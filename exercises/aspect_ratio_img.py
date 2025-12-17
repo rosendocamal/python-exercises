@@ -22,6 +22,7 @@ img = Image.open(BytesIO(response.content))
 # Obtener el valor del ancho y alto de la imagen.
 width, height = img.width, img.height
 
+print(width, height)
 # Calculando el aspect ratio
 
 def is_prime_num(num):
@@ -51,14 +52,14 @@ def mcd(w, h):
     while temp != 1:
         if temp % divider == 0:
             temp = temp / divider
-            dividers.append(divider)
+            dividers_w.append(divider)
             divider = prime_nums[0]
         elif temp % divider != 0:
             for i in range(1, len(prime_nums)):
                 divider = prime_nums[i]
                 if temp % divider == 0:
                     temp = temp / divider
-                    dividers.append(divider)
+                    dividers_w.append(divider)
                     divider = prime_nums[0]
                     break
 
@@ -71,19 +72,39 @@ def mcd(w, h):
     while temp != 1:
         if temp % divider == 0:
             temp = temp / divider
-            dividers.append(divider)
+            dividers_h.append(divider)
             divider = prime_nums[0]
         elif temp % divider != 0:
             for i in range(1, len(prime_nums)):
                 divider = prime_nums[i]
                 if temp % divider == 0:
                     temp = temp / divider
-                    dividers.append(divider)
+                    dividers_h.append(divider)
                     divider = prime_nums[0]
                     break 
 
     dividers_w.sort()
     dividers_h.sort()
 
-    dividers_w_unique = set(dividers_w)
-    dividers_h_unique = set(dividers_h)
+    dividers = set(dividers_w + dividers_h)
+    
+    total_factors = dict()
+
+    for i in dividers:
+        total_factors[i] = min(dividers_w.count(i), dividers_h.count(i))
+
+    mcd = 1
+    for i in total_factors.keys():
+        mcd *= i ** total_factors[i]
+
+
+    return mcd
+
+def aspect_ratio(w, h, mcd):
+    weigth = int(w / mcd)
+    height = int(h / mcd)
+
+    print(f"The aspect ratio is {weigth}:{height}.")
+
+
+aspect_ratio(width, height, mcd(width, height))
