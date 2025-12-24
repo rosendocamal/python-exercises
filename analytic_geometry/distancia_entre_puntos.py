@@ -8,7 +8,6 @@ def read_ordered_pair(point):
     while True:
         user_input = input(f'Escriba las coordenadas del punto {point}.\n(a,b): ')
         try:
-            #ordered_pair = [float(point[1:point.index(",")]), float(point[point.index(",") + 1:-1])]
             point = user_input.strip("()").split(",")
             ordered_pair = (float(point[0]), float(point[1]))
             return ordered_pair
@@ -67,19 +66,6 @@ def show_graphic(pointA, pointB, distance):
             )
     
     # Personalización del gráfico
-    """
-    if x2 >= x1:
-        ax.set_xlim([-abs(x2), abs(x2)])
-    else:
-        ax.set_xlim([-abs(x1), abs(x1)])
-
-    if y2 >= y1:
-        ax.set_ylim([-abs(y2), abs(y2)])
-    else:
-        ax.set_ylim([-abs(y1), abs(y1)])
-    """
-    #ax.set_xlim([-10, 10])
-    #ax.set_ylim([-10, 10])
     margin = 2
     ax.set_xlim(min(x1, x2, 0) - margin, max(x1, x2, 0) + margin)
     ax.set_ylim(min(y1, y2, 0) - margin, max(y1, y2, 0) + margin)
