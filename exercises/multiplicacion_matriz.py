@@ -55,7 +55,7 @@ def main():
         for i in matrix:
             print(tuple(i))
     else:
-        return -1;
+        return None
 
 if __name__ == '__main__':
     main()
