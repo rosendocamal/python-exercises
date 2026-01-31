@@ -29,7 +29,7 @@ def matrix_multiplication(matA, matB, matAB):
     # Dado que matA es row i x  column k, matB es row k x column j
     for i in range(size_row_matA): # Accedo a las filas de matA
         for j in range(size_column_matB): # Accedo a las columnas de matB
-            for k in range(size_row_matB):
+            for k in range(size_column_matA):
                 # Accedo al elemento en fila k en columna j de matB
                 # Accedo al elemento en fila i en columna k de matA
 
